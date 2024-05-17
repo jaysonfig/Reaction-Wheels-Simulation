@@ -1,0 +1,8 @@
+[submodule "lib/Eigen"]
+	path = lib/Eigen
+	url = https://gitlab.com/libeigen/eigen.git
+	branch = 3.4
+[submodule "lib/JSON"]
+	path = lib/JSON
+	url = https://github.com/nlohmann/json.git
+	branch = master
