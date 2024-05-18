@@ -2,13 +2,13 @@
     "Simulation":
     {
         "startTime": 0,
-        "endTime": 100,
+        "endTime": 4,
         "timeStep": 1e-3
     },
     "Vehicle":
     {
-        "initialAngularVelocity": [2, 3, -4],
-        "initialAttitude": [0, 0, 0, 1],
+        "angularVelocity": [2, 3, -4],
+        "attitude": [0, 0, 0, 1],
         "inertia": [[1000, 0, 0],
                     [0, 800, 0],
                     [0, 0, 500]]
