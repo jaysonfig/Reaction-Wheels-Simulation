@@ -5,4 +5,4 @@ mkdir build
 cd build
 cmake ..
 make -j4
-mv example ../example
+mv ReactionWheels ../ReactionWheels
