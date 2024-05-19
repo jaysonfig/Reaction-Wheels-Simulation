@@ -13,24 +13,20 @@ class Vehicle
         Vehicle(nlohmann::json vehicleConfig);
 
         const Eigen::Vector<double, 3> computeRigidBodyDynamics(Eigen::Vector<double, 3> externalTorques, 
-                                                                Eigen::Vector<double, 3> angularVelocity, 
-                                                                Eigen::Matrix<double, 3, 3> inertia, 
-                                                                Eigen::Matrix<double, 3, 3> inverseInertia);
-
-        const Eigen::Vector<double, 3> computeRigidBodyDynamics(Eigen::Vector<double, 3> externalTorques, 
-                                                                Eigen::Vector<double, 3> angularVelocity, 
-                                                                Eigen::Matrix<double, 3, 3> inertia);
-
-        const Eigen::Vector<double, 3> computeRigidBodyDynamics(Eigen::Vector<double, 3> externalTorques, 
                                                                 Eigen::Vector<double, 3> angularVelocity);
 
         const Eigen::Vector<double, 4> computeAttitudeKinematics(Eigen::Vector<double, 4> attitude,
                                                                  Eigen::Vector<double, 3> angularVelocity);
 
+        const Eigen::Vector<double, 3> computeGyrostatDynamics(Eigen::Vector<double, 3> externalTorques,
+                                                               Eigen::Vector<double, 3> internalTorques,
+                                                               Eigen::Vector<double, 3> angularVelocity,
+                                                               Eigen::Vector<double, 3> wheelAngularMomentum);
+
         inline const double getEpoch()
         {
             return epoch;
-        };
+        }
 
         inline const Eigen::Vector<double, 3> getAngularVelocity()
         {
@@ -55,7 +51,7 @@ class Vehicle
         inline void setEpoch(const double epoch)
         {
             this->epoch = epoch;
-        };
+        }
 
         inline void setAngularVelocity(const Eigen::Vector<double, 3> angularVelocity)
         {
@@ -65,12 +61,6 @@ class Vehicle
         inline void setAttitude(const Eigen::Vector<double, 4> attitude)
         {
             this->attitude = attitude;
-        };
-
-        void setInertia(const Eigen::Matrix<double, 3, 3> inertia)
-        {
-            this->inertia = inertia;
-            this->inverseInertia = inertia.inverse();
         };
 
     private:

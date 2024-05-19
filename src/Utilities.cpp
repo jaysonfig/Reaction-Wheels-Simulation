@@ -21,7 +21,7 @@ void outputStates(const double simTime, const Eigen::Vector<double, 3> angularVe
 {
     if(output.tellp() == 0)
     {
-        output << "t,wx,wy,wz,q1,q2,q3,q4\n";
+        output << "t[s],wx[rad/s],wy[rad/s],wz[rad/s],q1,q2,q3,q4\n";
     }
     output << simTime << ",";
     for(int i = 0; i < 3; ++i)
