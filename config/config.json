@@ -7,10 +7,17 @@
     },
     "Vehicle":
     {
-        "angularVelocity": [2, 3, -4],
+        "angularVelocity": [0, 0, 0],
         "attitude": [0, 0, 0, 1],
-        "inertia": [[1000, 0, 0],
-                    [0, 800, 0],
-                    [0, 0, 500]]
+        "inertiaWithoutWheels": [[1000, 0, 0],
+                                 [0, 800, 0],
+                                 [0, 0, 500]],
+        "numWheels": 4,
+        "wheelDistribution": [[1, 0, 0, 0.5773502691896258],
+                              [0, 1, 0, 0.5773502691896258],
+                              [0, 0, 1, 0.5773502691896258]],
+        "wheelMomentum": [10, 20, 3],
+        "wheelSpinInertia": 100,
+        "wheelPerpendicularInertia": 30
     }
 }

@@ -19,7 +19,7 @@ class Vehicle
                                                                  Eigen::Vector<double, 3> angularVelocity);
 
         const Eigen::Vector<double, 3> computeGyrostatDynamics(Eigen::Vector<double, 3> externalTorques,
-                                                               Eigen::Vector<double, 3> internalTorques,
+                                                               Eigen::Vector<double, 3> wheelTorques,
                                                                Eigen::Vector<double, 3> angularVelocity,
                                                                Eigen::Vector<double, 3> wheelAngularMomentum);
 
@@ -48,6 +48,33 @@ class Vehicle
             return inverseInertia;
         };
 
+        inline const int getNumWheels()
+        {
+            return numWheels;
+        };
+
+        inline const Eigen::Matrix<double, -1, -1> getWheelDistribution()
+        {
+            return wheelDistribution;
+        };
+
+        inline const Eigen::Vector<double, 3> getWheelMomentum()
+        {
+            return wheelMomentum;
+        };
+
+        inline const double getWheelSpinInertia()
+        {
+            return wheelSpinInertia;
+        };
+
+        inline const double getWheelPerpendicularInertia()
+        {
+            return wheelPerpendicularInertia;
+        };
+
+        const Eigen::Vector<double, -1> getWheelSpinRates();
+
         inline void setEpoch(const double epoch)
         {
             this->epoch = epoch;
@@ -63,12 +90,24 @@ class Vehicle
             this->attitude = attitude;
         };
 
+        inline void setWheelMomentum(const Eigen::Vector<double, 3> wheelMomentum)
+        {
+            this->wheelMomentum = wheelMomentum;
+        }
+
     private:
         double epoch;
         Eigen::Vector<double, 3> angularVelocity;
         Eigen::Vector<double, 4> attitude;
+        Eigen::Matrix<double, 3, 3> inertiaWithoutWheels;
         Eigen::Matrix<double, 3, 3> inertia;
         Eigen::Matrix<double, 3, 3> inverseInertia;
+        int numWheels;
+        Eigen::Matrix<double, -1, -1> wheelDistribution;
+        Eigen::Matrix<double, -1, -1> pInverseWheelDistribution;
+        Eigen::Vector<double, 3> wheelMomentum;
+        double wheelSpinInertia;
+        double wheelPerpendicularInertia;
 };
 
 #endif
