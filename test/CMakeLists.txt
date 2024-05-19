@@ -16,13 +16,26 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(ReactionWheelTest
+include_directories(../include)
 
+find_package(nlohmann_json 3.11.3 REQUIRED)
+find_package(Eigen3 3.4 REQUIRED)
+
+add_executable(ReactionWheelTest
+                    # source
+                    ../src/Utilities.cpp
+
+                    # include
+                    ../include/Utilities.hpp
+
+                    # tests
                     unittests/Utility_test.cpp
 )
 target_link_libraries(
   ReactionWheelTest
   GTest::gtest_main
+  Eigen3::Eigen
+  nlohmann_json::nlohmann_json
 )
 
 include(GoogleTest)

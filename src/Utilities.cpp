@@ -13,7 +13,7 @@ Eigen::Matrix<double, 4, 3> quaternionXiMatrix(const Eigen::Vector<double, 4> q)
 {
     Eigen::Matrix<double, 4, 3> mat;
     mat.block<3, 3>(0, 0) = q(3) * Eigen::Matrix<double, 3, 3>::Identity() + crs(q.segment<3>(0));
-    mat.block<1, 3>(3, 0) = q.segment<3>(0).transpose();
+    mat.block<1, 3>(3, 0) = -q.segment<3>(0).transpose();
     return mat;
 }
 
